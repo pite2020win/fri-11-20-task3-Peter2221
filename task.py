@@ -1,34 +1,41 @@
-#Matrix. 
+class Matrix:
+  def __init__(self, a, b, c, d):
+    self.a = a
+    self.b = b
+    self.c = c
+    self.d = d
 
+  def __add__(self, m):
+    a = self.a + m.a
+    b = self.b + m.b
+    c = self.c + m.c
+    d = self.d + m.d
+    return Matrix(a, b, c, d)
 
-#Write a class that can represent any 4𝑥4 real matrix. 
-#Include two functions to calculate the sum and dot product of two matrices. 
-#Next, write a program that imports this library module and use it to perform calculations.
-# You CAN'T use numpy.
-#Examples:
-#
-# matrix_1 = Matrix(4.,5.,6.,7.)
-# matrix_2 = Matrix(2.,2.,2.,1.)
-#
-# matrix_3 = matrix_2 @ matrix_1
-# matrix_4 = matrix_2 + matrix_1
-# matrix_4 = 6 + matrix_1
-# matrix_4 = matrix_1 + 6
-#
-# expand your solution to include other operations like
-# - subtraction 
-# - inversion
-# - string representation 
-#
-#Try to expand your implementation as best as you can. 
-#Think of as many features as you can, and try implementing them.
-#Make intelligent use of pythons syntactic sugar (overloading, iterators, generators, etc)
-#Most of all: CREATE GOOD, RELIABLE, READABLE CODE.
-#The goal of this task is for you to SHOW YOUR BEST python programming skills.
-#Impress everyone with your skills, show off with your code.
-#
-#Your program must be runnable with command "python task.py".
-#Show some usecases of your library in the code (print some things)
-#Delete these comments before commit!
-#
-#Good luck.
+  def __sub__(self, m):
+    a = self.a - m.a
+    b = self.b - m.b
+    c = self.c - m.c
+    d = self.d - m.d
+    return Matrix(a, b, c, d)
+
+  def __matmul__(self, m):
+    return self.a * m.a + self.b * m.b + self.c * m.c + self.d * m.d
+
+  def __repr__(self):
+    return "[{a}, {b} \n {c}, {d}]".format(a=self.a, b=self.b, c=self.c, d=self.d)
+
+if __name__ == "__main__":
+  # adding
+  m1 = Matrix(1, 2, 3, 4)
+  m2 = Matrix(1, 2, 3, 4)
+  m3 = m1 + m2
+  print(m3)
+
+  # subtracting
+  m5 = m1 - m2
+  print(m5)
+
+  # dot product
+  m4 = m1 @ m2
+  print(m4)
